@@ -3,6 +3,7 @@
 
 
 struct Node {
+	//@TODO create constructor
     Node* colLink;
     Node* rowLink;
     int coefficient, row, column;
@@ -23,14 +24,12 @@ class CircularLinkedList{
 		// type will determine weather or not to use
 		// the row value or the column value to determine position
 		void insertInColumn(Node* node);
-		// void insertInColumn(Node* node);
+		void insertInRow(Node* node);
 		// void delete(Node* node);
-
   		void setHeadPtr(Node* node);
-
   		Node* getHeadPtr() const;
-
 		void printList();
+		void printRowList();
 
 	private:
 		Node* head;
