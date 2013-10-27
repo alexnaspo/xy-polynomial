@@ -58,7 +58,8 @@ int Node::evaluate(int x, int y){
 	int xVal = pow(x,row);
 	int yVal = pow(y, column);
 
-	return (coefficient * xVal * yVal);
+	int final = (coefficient * xVal * yVal);
+	return final;
 }
 
 std::string Node::display(){

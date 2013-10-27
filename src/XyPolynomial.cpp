@@ -86,6 +86,81 @@ int XyPolynomial::getM(){
 	return m;
 }
 
+void XyPolynomial::runTestCases(){
+	// test case P
+	XyPolynomial* P = new XyPolynomial();
+	std::string* tripletArray = new std::string[50]; 
+
+	//hard code user input
+	tripletArray[0] = "(5,4,3)";
+	tripletArray[1] = "(-2,3,4)";
+	tripletArray[2] = "(1,1,1)";
+	tripletArray[3] = "(-6,0,0)";
+
+	Node** nodes = P->convertTripletsToNodes(tripletArray, 4);
+	P->initialize(nodes, 4);
+	std::cout << "output for P:  ";
+	P->outputForTests();
+
+	// test case Q
+	XyPolynomial* Q = new XyPolynomial();
+
+	//hard code user input
+	tripletArray[0] = "(-8,3,5)";
+	tripletArray[1] = "(4,2,2)";
+	tripletArray[2] = "(-1,1,0)";
+	tripletArray[3] = "(1,0,1)";
+	tripletArray[4] = "(1,0,0)";
+
+	nodes = Q->convertTripletsToNodes(tripletArray, 5);
+	Q->initialize(nodes, 5);
+	std::cout << "output for Q:  ";
+	Q->outputForTests();
+
+	// test case R
+	XyPolynomial* R = new XyPolynomial();
+
+	//hard code user input
+	tripletArray[0] = "(8,3,0)";
+	tripletArray[1] = "(6,2,1)";
+	tripletArray[2] = "(-4,1,0)";
+	tripletArray[3] = "(2,0,0)";
+
+	nodes = R->convertTripletsToNodes(tripletArray, 4);
+	R->initialize(nodes, 4);
+	std::cout << "output for R:  ";
+	R->outputForTests();
+
+	// test case S
+	XyPolynomial* S = new XyPolynomial();
+
+	//hard code user input
+	tripletArray[0] = "(3,1,1)";
+	tripletArray[1] = "(-5,0,5)";
+	tripletArray[2] = "(3,0,3)";
+	tripletArray[3] = "(-1,0,1)";
+
+	nodes = S->convertTripletsToNodes(tripletArray, 4);
+	S->initialize(nodes, 4);
+	std::cout << "output for S:  ";
+	S->outputForTests();
+	
+}
+
+void XyPolynomial::outputForTests(){	
+	this->output();
+	std::cout << "    evaluate(3,8): ";
+	this->evaluate(3,8);
+	std::cout << "    evaluate(3,0): ";
+	this->evaluate(3,0);
+	std::cout << "    evaluate(0,2): ";
+	this->evaluate(0,2);
+	std::cout << "    evaluate(2,2): ";
+	this->evaluate(2,2);
+	std::cout << "    evaluate(10,6): ";
+	this->evaluate(10,6);
+}
+
 
 
 

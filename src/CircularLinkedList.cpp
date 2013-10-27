@@ -95,7 +95,7 @@ int CircularLinkedList::evaluateList(int x, int y){
     int total = 0;
     Node* cp = head;
     while(cp->getRowLink()->getColumn() != -1){                           
-        cp = cp->getRowLink();           
+        cp = cp->getRowLink();   
         total += cp->evaluate(x, y);
     }          
     return total;

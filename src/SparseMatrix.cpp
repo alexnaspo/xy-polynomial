@@ -49,7 +49,7 @@ void SparseMatrix::printFormatedMatrix(void){
 
 void SparseMatrix::evaluateMatrix(int x, int y){
 	int total = 0;
-	for(int i = rowCount -1; i >= 0; i--){	
+	for(int i = rowCount; i >= 0; i--){	
 		total += rowArray[i]->evaluateList(x, y);	
 	}
 	std::cout << total << std::endl;

@@ -20,10 +20,12 @@ class XyPolynomial{
 		void setN(int x);
 
 		int getN();
-
+		Node** convertTripletsToNodes(std::string* triplets, int numTriplets);
+		void outputForTests();
+		static void runTestCases();
 
 	private:
-		Node** convertTripletsToNodes(std::string* triplets, int numTriplets);
+		//Node** convertTripletsToNodes(std::string* triplets, int numTriplets);
 
 		SparseMatrix* matrix;
 		int m;
