@@ -1,27 +1,51 @@
+#include <node.h>
 #include <math.h>
 #include <string>
+#include <iostream>
+#include <sstream>
 
 
-struct Node {
-    Node* rowLink;
-	Node* colLink;
+// struct Node {
+//     Node* rowLink;
+// 	Node* colLink;
     
-    int coefficient;
-    int row;
-    int column;
-    Node(int coef, int r, int col){
-    	row = r;
-    	column = col;
-    	coefficient = coef;    	
-    }
+//     int coefficient;
+//     int row;
+//     int column;
+//     Node(int coef, int r, int col){
+//     	row = r;
+//     	column = col;
+//     	coefficient = coef;    	
+//     }
 
-    int evaluate(int x, int y){
-		int xVal = pow(x,row);
-		int yVal = pow(y, column);
+//     std::string display(){
+//         std::string result;
+//         std::stringstream sstm;
 
-		return (coefficient * xVal * yVal);
-	}
-};
+//         std::string x = "x";
+//         std::string y = "y";
+        
+//         sstm << coefficient;
+//         if(row > 0){
+//             sstm << x << row;    
+//         }
+
+//         if(column > 0){
+//             sstm << y << column;    
+//         }
+        
+//         result = sstm.str();
+
+//         return result;  
+//     }
+
+//     int evaluate(int x, int y){
+// 		int xVal = pow(x,row);
+// 		int yVal = pow(y, column);
+
+// 		return (coefficient * xVal * yVal);
+// 	}
+// };
 
 class CircularLinkedList{
 	public:
@@ -36,7 +60,8 @@ class CircularLinkedList{
 		// void delete(Node* node);
   		void setHeadPtr(Node* node);
   		Node* getHeadPtr() const;
-		void printList();
+		std::string printList();
+        int evaluateList(int x, int y);
 
 	private:
 		Node* head;

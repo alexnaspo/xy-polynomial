@@ -10,6 +10,8 @@ class SparseMatrix{
 		void insertInMatrix(Node* node);
 
 		void printMatrix();
+		void printFormatedMatrix();
+		void evaluateMatrix(int x, int y);
 		
 
 	private:

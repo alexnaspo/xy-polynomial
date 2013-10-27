@@ -78,9 +78,17 @@ std::string Node::display(){
 
 	std::string x = "x";
 	std::string y = "y";
-	
-	sstm << coefficient << x << row << y << column;
-	result = sstm.str();
+	     
+    sstm << coefficient;
+    if(row > 0){
+        sstm << x << row;    
+    }
+
+    if(column > 0){
+        sstm << y << column;    
+    }
+    
+    result = sstm.str();
 
 	return result;	
 }

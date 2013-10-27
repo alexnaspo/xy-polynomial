@@ -15,12 +15,11 @@ SparseMatrix::SparseMatrix(int totalRows, int totalColumns){
 		CircularLinkedList* list = new CircularLinkedList(-1, j);
 		this->columnArray[j] = list;	
 	};
-
 }
 
 void SparseMatrix::insertInMatrix(Node* node){
-	int rowIndex = node->row - 1;
-	int columnIndex = node->column - 1;
+	int rowIndex = node->row;
+	int columnIndex = node->column;
 	columnArray[columnIndex]->insertInColumn(node);	
 	rowArray[rowIndex]->insertInRow(node);
 }
@@ -30,12 +29,29 @@ void SparseMatrix::printMatrix(void){
 	for(int i = 0; i < columnCount; i++){		
 		columnArray[i]->printList();	
 	};
-	
+
 	std::cout << "row" << std::endl;  
 	for(int j = 0; j < rowCount; j++){
 		rowArray[j]->printList();
 	};
 }
 
+void SparseMatrix::printFormatedMatrix(void){
+	std::string result;
+    std::stringstream sstm;
 
+	for(int i = rowCount -1; i >= 0; i--){	
+		sstm << rowArray[i]->printList();	
+	}
+
+	std::cout << sstm.str() << std::endl;
+}
+
+void SparseMatrix::evaluateMatrix(int x, int y){
+	int total = 0;
+	for(int i = rowCount -1; i >= 0; i--){	
+		total += rowArray[i]->evaluateList(x, y);	
+	}
+	std::cout << total << std::endl;
+}
 

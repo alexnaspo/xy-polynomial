@@ -16,7 +16,6 @@ CircularLinkedList::CircularLinkedList(int headRow, int headColumn){
 	}
 
 	head = headNode;
-
 }
 
 void CircularLinkedList::insertInColumn(Node* node){
@@ -26,7 +25,7 @@ void CircularLinkedList::insertInColumn(Node* node){
 	Node* prev;
 	int final = 1;
 	while(cp->colLink->row != -1){
-		final =0;
+		final = 0;
 		prev = cp;
 		cp = cp->colLink;
 		if(colValue > cp->column){
@@ -65,23 +64,41 @@ void CircularLinkedList::insertInRow(Node* node){
 	}
 }
 
-void CircularLinkedList::printList(void){
-	Node* cp = head;
+std::string CircularLinkedList::printList(void){
+	std::string result;
+    std::stringstream sstm;
+
+    Node* cp = head;
 	int rowValue = head->row;
 	
-	if(rowValue == -1){
-          
+	if(rowValue == -1){          
 		while(cp->colLink->row != -1){	
 			cp = cp->colLink;
-			std::cout << cp->column << std::endl;
+            if(cp->coefficient > 0){
+                sstm << "+ ";    
+            }
+			sstm << cp->display() << " ";
 		}
 	} else {
-                  
 		while(cp->rowLink->column != -1){							
 			cp = cp->rowLink;		 	
-			std::cout << cp->row << std::endl;	
+            if(cp->coefficient > 0){
+                sstm << "+ ";
+            }
+			sstm << cp->display() << " ";
 		}
-	}	
+	}
+    return sstm.str();	
+}
+
+int CircularLinkedList::evaluateList(int x, int y){
+    int total = 0;
+    Node* cp = head;
+    while(cp->rowLink->column != -1){                           
+        cp = cp->rowLink;           
+        total += cp->evaluate(x, y);
+    }          
+    return total;
 }
 
 void CircularLinkedList::setHeadPtr(Node* node) {
