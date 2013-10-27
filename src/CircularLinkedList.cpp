@@ -3,19 +3,20 @@
 #include <iostream>
 
 CircularLinkedList::CircularLinkedList(int headRow, int headColumn){
-	Node* headNode = new Node;
-	headNode->column = headColumn;
-	headNode->row = headRow;
-	headNode->coefficient = NULL;
+	Node* headNode = new Node(NULL, headRow, headColumn);
 
 	if(headRow == -1){
+		// build column
 		headNode->colLink = headNode;
 		headNode->rowLink = NULL;	
-	} else {
+	} else if(headColumn == -1) {
+		// build row
 		headNode->colLink = NULL;
 		headNode->rowLink = headNode;	
 	}
+
 	head = headNode;
+
 }
 
 void CircularLinkedList::insertInColumn(Node* node){
@@ -65,23 +66,20 @@ void CircularLinkedList::insertInRow(Node* node){
 }
 
 void CircularLinkedList::printList(void){
-	std::cout << "====column=====" << std::endl;
 	Node* cp = head;
-	while(cp->colLink->row != -1){				
-		cp = cp->colLink;
-		std::cout << cp->column << std::endl;
-	}
-	std::cout << "====column=====" << std::endl;
-}
-
-void CircularLinkedList::printRowList(void){
-	std::cout << "====row=====" << std::endl;
-	Node* cp = head;
-	while(cp->rowLink->column != -1){				
-		cp = cp->rowLink;
-		std::cout << cp->row << std::endl;
-	}
-	std::cout << "=====row====" << std::endl;
+	int rowValue = head->row;
+	
+	if(rowValue == -1){
+		while(cp->colLink->row != -1){				
+			cp = cp->colLink;
+			std::cout << cp->column << std::endl;
+		}
+	} else {
+		while(cp->rowLink->column != -1){							
+			cp = cp->rowLink;		 	
+			std::cout << cp->row << std::endl;	
+		}
+	}	
 }
 
 void CircularLinkedList::setHeadPtr(Node* node) {

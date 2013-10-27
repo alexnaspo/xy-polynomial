@@ -3,10 +3,18 @@
 
 
 struct Node {
-	//@TODO create constructor
-    Node* colLink;
     Node* rowLink;
-    int coefficient, row, column;
+	Node* colLink;
+    
+    int coefficient;
+    int row;
+    int column;
+    Node(int coef, int r, int col){
+    	row = r;
+    	column = col;
+    	coefficient = coef;    	
+    }
+
     int evaluate(int x, int y){
 		int xVal = pow(x,row);
 		int yVal = pow(y, column);
@@ -29,7 +37,6 @@ class CircularLinkedList{
   		void setHeadPtr(Node* node);
   		Node* getHeadPtr() const;
 		void printList();
-		void printRowList();
 
 	private:
 		Node* head;
