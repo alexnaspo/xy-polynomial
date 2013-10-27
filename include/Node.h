@@ -25,8 +25,5 @@ class Node {
         Node* colLink;
         Node* rowLink;
         int coefficient, row, column;
-
-        
-        
-              
+     
 };

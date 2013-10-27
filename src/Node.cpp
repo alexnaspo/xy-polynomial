@@ -4,15 +4,7 @@
 #include <sstream>
 #include <math.h>
 
-Node::Node(){
-	// colLink = NULL;
-	// rowLink = NULL;
-	// coefficient = NULL;
-	// row = NULL;
-	// column = NULL;
-	// setColLink(NULL);
-	// setRowLink(NULL);
-}
+Node::Node(){}
 
 Node::Node(int coef, int r, int col){
 	setColLink(NULL);
@@ -20,9 +12,6 @@ Node::Node(int coef, int r, int col){
 	setCoefficient(coef);
 	setRow(r);
 	setColumn(col);
-	// coefficient = coef;
-	// row = r;
-	// column = col;
 }
 
 void Node::setCoefficient(int c){
