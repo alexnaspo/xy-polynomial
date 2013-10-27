@@ -19,14 +19,12 @@ class Node {
         std::string display();
         int evaluate(int x, int y);
 
-        void toString();
-
-        Node* colLink;
-        Node* rowLink;
-        int coefficient, row, column;   
-        
+        void toString();                
 
     private:
+        Node* colLink;
+        Node* rowLink;
+        int coefficient, row, column;
 
         
         

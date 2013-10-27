@@ -18,8 +18,8 @@ SparseMatrix::SparseMatrix(int totalRows, int totalColumns){
 }
 
 void SparseMatrix::insertInMatrix(Node* node){
-	int rowIndex = node->row;
-	int columnIndex = node->column;
+	int rowIndex = node->getRow();
+	int columnIndex = node->getColumn();
 	columnArray[columnIndex]->insertInColumn(node);	
 	rowArray[rowIndex]->insertInRow(node);
 }
