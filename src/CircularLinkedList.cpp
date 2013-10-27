@@ -70,11 +70,13 @@ void CircularLinkedList::printList(void){
 	int rowValue = head->row;
 	
 	if(rowValue == -1){
-		while(cp->colLink->row != -1){				
+          
+		while(cp->colLink->row != -1){	
 			cp = cp->colLink;
 			std::cout << cp->column << std::endl;
 		}
 	} else {
+                  
 		while(cp->rowLink->column != -1){							
 			cp = cp->rowLink;		 	
 			std::cout << cp->row << std::endl;	
