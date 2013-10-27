@@ -23,7 +23,7 @@ class XyPolynomial{
 
 
 	private:
-		Node* convertTripletToNode(std::string& triplet);
+		Node** convertTripletsToNodes(std::string* triplets, int numTriplets);
 
 		SparseMatrix* matrix;
 		int m;
