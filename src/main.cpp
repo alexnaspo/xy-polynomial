@@ -13,3 +13,7 @@ int main()
 	
 	return 0;
 }
+
+void runTestCases(){
+	std::cout << "face";
+}
