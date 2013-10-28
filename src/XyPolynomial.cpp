@@ -1,4 +1,5 @@
 #include "XyPolynomial.h"
+#include <stdlib.h>
 #include <string>
 #include <iostream>
 

@@ -1,4 +1,4 @@
-#include <node.h>
+#include <Node.h>
 #include <math.h>
 #include <string>
 #include <iostream>
