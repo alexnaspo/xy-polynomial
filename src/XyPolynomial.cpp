@@ -88,6 +88,7 @@ int XyPolynomial::getM(){
 }
 
 void XyPolynomial::runTestCases(){
+	std::cout << "Start Automatic tests:\n" << std::endl;
 	// test case P
 	XyPolynomial* P = new XyPolynomial();
 	std::string* tripletArray = new std::string[50]; 
@@ -160,6 +161,7 @@ void XyPolynomial::outputForTests(){
 	this->evaluate(2,2);
 	std::cout << "    evaluate(10,6): ";
 	this->evaluate(10,6);
+	std::cout << "\n" << std::endl;
 }
 
 

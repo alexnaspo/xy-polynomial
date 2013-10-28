@@ -70,12 +70,16 @@ std::string Node::display(){
 	std::string y = "y";
 	     
     sstm << coefficient;
-    if(row > 0){
-        sstm << x << row;    
+    if(row == 1){
+    	sstm << x;            
+    } else if (row >= 1){
+    	sstm << x << row;  
     }
 
-    if(column > 0){
-        sstm << y << column;    
+    if(column == 1){
+    	sstm << y;            
+    } else if (column >= 1){
+    	sstm << y << column;
     }
     
     result = sstm.str();
