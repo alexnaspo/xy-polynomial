@@ -16,6 +16,6 @@ class SparseMatrix{
 		int rowCount;
 		int columnCount;
 
-		CircularLinkedList* rowArray[50];
-		CircularLinkedList* columnArray[50]; 	
+		CircularLinkedList** rowArray;
+		CircularLinkedList** columnArray; 	
 };

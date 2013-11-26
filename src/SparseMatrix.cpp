@@ -5,6 +5,8 @@
 SparseMatrix::SparseMatrix(int totalRows, int totalColumns){
 	rowCount = totalRows;
 	columnCount = totalColumns;
+	this->rowArray = new CircularLinkedList*[rowCount + 1];
+	this->columnArray = new CircularLinkedList*[columnCount + 1];
 
 	for(int i = 0; i <= rowCount; i++){
 		CircularLinkedList* list = new CircularLinkedList(i, -1);
@@ -15,13 +17,16 @@ SparseMatrix::SparseMatrix(int totalRows, int totalColumns){
 		CircularLinkedList* list = new CircularLinkedList(-1, j);
 		this->columnArray[j] = list;	
 	};
+
 }
 
 void SparseMatrix::insertInMatrix(Node* node){	
+	
 	int rowIndex = node->getRow();
-	int columnIndex = node->getColumn();
-	columnArray[columnIndex]->insertInColumn(node);			
-	rowArray[rowIndex]->insertInRow(node);
+	int columnIndex = node->getColumn();	
+	this->columnArray[columnIndex]->insertInColumn(node);				
+	this->rowArray[rowIndex]->insertInRow(node);
+	
 }
 
 void SparseMatrix::printMatrix(void){
