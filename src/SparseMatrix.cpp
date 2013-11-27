@@ -70,7 +70,6 @@ void SparseMatrix::subtractFromMatrix(Node* node){
 	} else {
 		int coef = (node->getCoefficient() * -1);
 		Node* newNode = new Node(coef, node->getRow(), node->getColumn());
-		// node->setCoefficient((node->getCoefficient() * -1));
 	 	insertInMatrix(newNode);
 	}
 }
@@ -116,8 +115,3 @@ void SparseMatrix::evaluateMatrix(int x, int y){
 int SparseMatrix::getRowCount(){
 	return rowCount;
 }
-
-// CircularLinkedList* getRowArray(){
-// 	return rowArray;
-// }
-

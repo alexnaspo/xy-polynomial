@@ -199,27 +199,27 @@ void XyPolynomial::runTestCases(){
 
 	XyPolynomial* A = P->add(Q);
 	std::cout << "output for A:  ";
-	A->outputForTests();
+	A->output();
 
 	XyPolynomial* B = P->subtract(Q);
 	std::cout << "output for B:  ";
-	B->outputForTests();
+	B->output();
 	
 	XyPolynomial* C = R->add(S);
 	std::cout << "output for C:  ";
-	C->outputForTests();
+	C->output();
 
 	XyPolynomial* D = P->subtract(S);
 	std::cout << "output for D:  ";
-	D->outputForTests();
+	D->output();
 
 	XyPolynomial* E = S->subtract(P);
 	std::cout << "output for E:  ";
-	E->outputForTests();
-	
+	E->output();
+
 	XyPolynomial* F = Q->add(R);	
 	std::cout << "output for F:  ";
-	F->outputForTests();
+	F->output();
 }
 
 void XyPolynomial::outputForTests(){	

@@ -20,7 +20,7 @@ CircularLinkedList::CircularLinkedList(int headRow, int headColumn){
 
 void CircularLinkedList::insertInColumn(Node* node){
 	int colValue = node->getColumn();
-
+	int rowValue = node->getRow();
 	node->setColLink(head);	
 	
 	Node* cp = head;
@@ -31,7 +31,7 @@ void CircularLinkedList::insertInColumn(Node* node){
 		final = 0;
 		prev = cp;
 		cp = cp->getColLink();
-		if(colValue > cp->getColumn()){
+		if (rowValue > cp->getRow()) {
 			prev->setColLink(node);
 			node->setColLink(cp);
 			return;
@@ -47,6 +47,7 @@ void CircularLinkedList::insertInColumn(Node* node){
 
 void CircularLinkedList::insertInRow(Node* node){
 	int rowValue = node->getRow();
+	int colValue = node->getColumn();
 	node->setRowLink(head);	
 	Node* cp = head;
 	Node* prev;
@@ -55,10 +56,7 @@ void CircularLinkedList::insertInRow(Node* node){
 		final = 0;
 		prev = cp;
 		cp = cp->getRowLink();
-		// if(cp->hasLikeTerms(node)){
-		// 	return;
-		// } else 
-		if (rowValue > cp->getRow()){
+		if(colValue > cp->getColumn()){
 			prev->setRowLink(node);
 			node->setRowLink(cp);
 			return;
@@ -74,7 +72,6 @@ void CircularLinkedList::insertInRow(Node* node){
 std::string CircularLinkedList::printList(void){
 	std::string result;
     std::stringstream sstm;
-
     Node* cp = head;
 	int rowValue = head->getRow();
 	
@@ -106,35 +103,6 @@ int CircularLinkedList::evaluateList(int x, int y){
         total += cp->evaluate(x, y);
     }          
     return total;
-}
-
-Node** CircularLinkedList::addList(CircularLinkedList* list){
-	Node** nodes = new Node*[1000];
-	int i= 0;
-	Node* cp = head;
-
-	while(cp->getRowLink()->getColumn() != -1){   
-		Node* curr = list->getHeadPtr();
-        cp = cp->getRowLink();               
-	
-        bool isNodeAdded = false;
-        while(curr->getRowLink()->getColumn() != -1){        	
-        	curr = curr->getRowLink();
-        	if(cp->hasLikeTerms(curr)){
-        		nodes[i++] = cp->createNodeAndAdd(curr);
-        		isNodeAdded = true;
-        	}        	
-        }
-        if(!isNodeAdded){
-        	nodes[i++] = cp;
-        }
-    }
-
-   	for(int x = 0; x < i; x++){
-   		std::cout << nodes[x]->display() << std::endl;
-   	}  
-
-   	return nodes;
 }
 
 void CircularLinkedList::removeNode(Node* node){
