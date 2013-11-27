@@ -3,7 +3,7 @@
 #include <iostream>
 
 CircularLinkedList::CircularLinkedList(int headRow, int headColumn){
-	Node* headNode = new Node(NULL, headRow, headColumn);
+	Node* headNode = new Node(0, headRow, headColumn);
 
 	if(headRow == -1){
 		// build column
@@ -95,8 +95,8 @@ std::string CircularLinkedList::printList(void){
     return sstm.str();	
 }
 
-int CircularLinkedList::evaluateList(int x, int y){
-    int total = 0;
+double CircularLinkedList::evaluateList(double x, double y){
+    double total = 0;
     Node* cp = head;
     while(cp->getRowLink()->getColumn() != -1){                           
         cp = cp->getRowLink();   

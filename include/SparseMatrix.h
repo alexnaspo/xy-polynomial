@@ -9,7 +9,7 @@ class SparseMatrix{
 		void insertInMatrix(Node* node);
 		void printMatrix();
 		void printFormatedMatrix();
-		void evaluateMatrix(int x, int y);
+		void evaluateMatrix(double x, double y);
 		int getRowCount();		
 		CircularLinkedList* getRowArray();
 

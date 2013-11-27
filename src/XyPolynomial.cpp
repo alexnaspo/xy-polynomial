@@ -44,10 +44,9 @@ void XyPolynomial::initialize(Node* nodes[], int nodeCount){
 
 void XyPolynomial::output(){
 	matrix->printFormatedMatrix();
-	// matrix->printMatrix();
 }
 
-void XyPolynomial::evaluate(int x, int y){
+void XyPolynomial::evaluate(double x, double y){
 	matrix->evaluateMatrix(x, y);
 }
 
@@ -104,13 +103,13 @@ Node** XyPolynomial::convertTripletsToNodes(std::string triplets[], int numTripl
 		std::string token;
 		triplet.erase(0,1);	
 		int k = 0;
-		int values[5];
+		double values[5];
 		while ((pos = triplet.find(delimiter)) != std::string::npos) {
 		    token = triplet.substr(0, pos);
-		    values[k++] = atoi(token.c_str());				
+		    values[k++] = atof(token.c_str());				
 		    triplet.erase(0, pos + delimiter.length());			    
 		}
-		values[k++] = atoi(triplet.c_str());
+		values[k++] = atof(triplet.c_str());
 		nodes[i] = new Node(values[0], values[1], values[2]);
 	}	
 
@@ -236,12 +235,3 @@ void XyPolynomial::outputForTests(){
 	this->evaluate(10,6);
 	std::cout << "\n" << std::endl;
 }
-
-
-
-
-
-
-
-
-

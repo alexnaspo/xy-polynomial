@@ -12,7 +12,7 @@ class XyPolynomial{
 
 		void output();
 
-		void evaluate(int x, int y);
+		void evaluate(double x, double y);
 
 		void setM(int y);
 
@@ -27,15 +27,10 @@ class XyPolynomial{
 		XyPolynomial* add(XyPolynomial* poly);
 		XyPolynomial* subtract(XyPolynomial* poly);
 
-
 		SparseMatrix* matrix;
 
-	private:
-		//Node** convertTripletsToNodes(std::string* triplets, int numTriplets);
-
-		
+	private:		
 		int m;
 		int n;
-
 
 };

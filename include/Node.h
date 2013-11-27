@@ -3,21 +3,21 @@
 class Node {
 	public:
         Node();
-        Node(int coef, int r, int col);
-		void setCoefficient(int c);
-		void setRow(int r);
-		void setColumn(int c);
+        Node(double coef, int r, int col);
+        void setCoefficient(double c);
+        void setRow(int r);
+        void setColumn(int c);
         void setColLink(Node* node);
         void setRowLink(Node* node);        
 
-		int getCoefficient() const;
+		double getCoefficient() const;
         int getRow() const;
 		int getColumn() const;
         Node* getColLink() const;
         Node* getRowLink() const;
 
         std::string display();
-        int evaluate(int x, int y);
+        double evaluate(double x, double y);
 
         void condenseNodes(Node* node);
         Node* addNode(Node* node);
@@ -26,11 +26,12 @@ class Node {
 
         bool hasLikeTerms(Node* node);
 
-        void toString();                
+        void toString();                        
 
     private:
         Node* colLink;
         Node* rowLink;
-        int coefficient, row, column;
+        double coefficient;
+        int row, column;
      
 };

@@ -12,7 +12,7 @@ class CircularLinkedList{
   		void setHeadPtr(Node* node);
   		Node* getHeadPtr() const;
 		std::string printList();
-        int evaluateList(int x, int y);
+        double evaluateList(double x, double y);
 
         Node* findNodeWithLikeTerms(Node* node);
         void removeNode(Node* node);

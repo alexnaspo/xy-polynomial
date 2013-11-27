@@ -6,7 +6,7 @@
 
 Node::Node(){}
 
-Node::Node(int coef, int r, int col){
+Node::Node(double coef, int r, int col){
 	setColLink(NULL);
 	setRowLink(NULL);
 	setCoefficient(coef);
@@ -14,7 +14,7 @@ Node::Node(int coef, int r, int col){
 	setColumn(col);
 }
 
-void Node::setCoefficient(int c){
+void Node::setCoefficient(double c){
 	coefficient = c;
 }
 
@@ -42,7 +42,7 @@ int Node::getColumn() const {
 	return column;
 }
 
-int Node::getCoefficient() const {
+double Node::getCoefficient() const {
 	return coefficient;
 }
 
@@ -54,11 +54,11 @@ Node* Node::getRowLink() const {
 	return rowLink;
 }
 
-int Node::evaluate(int x, int y){
-	int xVal = pow(x,row);
-	int yVal = pow(y, column);
+double Node::evaluate(double x, double y){
+	double xVal = pow(x,row);
+	double yVal = pow(y, column);
 
-	int final = (coefficient * xVal * yVal);
+	double final = (coefficient * xVal * yVal);
 	return final;
 }
 
@@ -120,3 +120,4 @@ void Node::toString(){
 	std::cout << getRowLink() << std::endl;	
 	std::cout << getColLink() << std::endl;
 }
+

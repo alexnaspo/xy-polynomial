@@ -68,7 +68,7 @@ void SparseMatrix::subtractFromMatrix(Node* node){
 		this->rowArray[nodeFound->getRow()]->removeNode(nodeFound);
 		insertInMatrix(nodeFound->subtractNode(node));
 	} else {
-		int coef = (node->getCoefficient() * -1);
+		double coef = (node->getCoefficient() * -1);
 		Node* newNode = new Node(coef, node->getRow(), node->getColumn());
 	 	insertInMatrix(newNode);
 	}
@@ -104,8 +104,8 @@ void SparseMatrix::printFormatedMatrix(void){
 	std::cout << sstm.str() << std::endl;
 }
 
-void SparseMatrix::evaluateMatrix(int x, int y){
-	int total = 0;
+void SparseMatrix::evaluateMatrix(double x, double y){
+	double total = 0;
 	for(int i = rowCount; i >= 0; i--){	
 		total += rowArray[i]->evaluateList(x, y);	
 	}
