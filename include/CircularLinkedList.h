@@ -13,6 +13,13 @@ class CircularLinkedList{
   		Node* getHeadPtr() const;
 		std::string printList();
         int evaluateList(int x, int y);
+        Node** addList(CircularLinkedList* list);
+
+        Node* findNodeWithLikeTerms(Node* node);
+        void removeNode(Node* node);
+
+        bool isColListEmpty();
+        bool isRowListEmpty();
 
 	private:
 		Node* head;

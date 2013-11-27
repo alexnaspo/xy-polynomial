@@ -21,12 +21,65 @@ SparseMatrix::SparseMatrix(int totalRows, int totalColumns){
 }
 
 void SparseMatrix::insertInMatrix(Node* node){	
-	
-	int rowIndex = node->getRow();
-	int columnIndex = node->getColumn();	
-	this->columnArray[columnIndex]->insertInColumn(node);				
-	this->rowArray[rowIndex]->insertInRow(node);
-	
+	Node* newNode = new Node(node->getCoefficient(), node->getRow(), node->getColumn());
+	int rowIndex = newNode->getRow();
+	int columnIndex = newNode->getColumn();
+	this->rowArray[rowIndex]->insertInRow(newNode);	
+	this->columnArray[columnIndex]->insertInColumn(newNode);
+}
+
+void SparseMatrix::addMatrix(SparseMatrix* matrix){
+	for(int i = matrix->rowCount; i >= 0; i--){	
+		CircularLinkedList* list = matrix->rowArray[i];
+		Node* cp = list->getHeadPtr();
+		while(cp->getRowLink()->getColumn() != -1){
+			cp = cp->getRowLink();			
+			this->addToMatrix(cp);		
+		}
+	}
+}
+
+void SparseMatrix::subtractMatrix(SparseMatrix* matrix){
+	for(int i = matrix->rowCount; i >= 0; i--){	
+		CircularLinkedList* list = matrix->rowArray[i];
+		Node* cp = list->getHeadPtr();
+		while(cp->getRowLink()->getColumn() != -1){
+			cp = cp->getRowLink();			
+			this->subtractFromMatrix(cp);		
+		}
+	}
+}
+
+void SparseMatrix::addToMatrix(Node* node){	
+	Node* nodeFound = this->findNodeWithLikeTerms(node);
+	if(nodeFound){
+		//need to replace node
+		this->rowArray[nodeFound->getRow()]->removeNode(nodeFound);
+		insertInMatrix(nodeFound->addNode(node));
+	} else {
+		insertInMatrix(node);
+	}
+}
+
+void SparseMatrix::subtractFromMatrix(Node* node){
+	Node* nodeFound = this->findNodeWithLikeTerms(node);
+	if(nodeFound){
+		//need to replace node
+		this->rowArray[nodeFound->getRow()]->removeNode(nodeFound);
+		insertInMatrix(nodeFound->subtractNode(node));
+	} else {
+		int coef = (node->getCoefficient() * -1);
+		Node* newNode = new Node(coef, node->getRow(), node->getColumn());
+		// node->setCoefficient((node->getCoefficient() * -1));
+	 	insertInMatrix(newNode);
+	}
+}
+
+Node* SparseMatrix::findNodeWithLikeTerms(Node* node){
+	int row = node->getRow();
+	//only search the linked this with the matching row
+	Node* nodeFound = rowArray[row]->findNodeWithLikeTerms(node);
+	return nodeFound;
 }
 
 void SparseMatrix::printMatrix(void){
@@ -59,4 +112,12 @@ void SparseMatrix::evaluateMatrix(int x, int y){
 	}
 	std::cout << total << std::endl;
 }
+
+int SparseMatrix::getRowCount(){
+	return rowCount;
+}
+
+// CircularLinkedList* getRowArray(){
+// 	return rowArray;
+// }
 

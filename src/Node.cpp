@@ -87,6 +87,32 @@ std::string Node::display(){
 	return result;	
 }
 
+Node* Node::createNodeAndAdd(Node* node){	
+	return new Node(node->getCoefficient() + getCoefficient(), getRow(), getColumn());
+}
+
+void Node::condenseNodes(Node* node){	
+	this->setCoefficient(node->getCoefficient() + getCoefficient());
+}
+
+Node* Node::addNode(Node* node){	
+	int coef = node->getCoefficient() + getCoefficient();
+	return new Node(coef, node->getRow(), node->getColumn());
+}
+
+Node* Node::subtractNode(Node* node){	
+	int coef = getCoefficient() - node->getCoefficient();
+	return new Node(coef, node->getRow(), node->getColumn());
+}
+
+bool Node::hasLikeTerms(Node* node){
+	if(node->getRow() == this->getRow() && node->getColumn() == this->getColumn()){
+		return true;
+	} else {
+		return false;
+	}
+}
+
 void Node::toString(){
 	std::cout << getColumn() << std::endl;
 	std::cout << getRow() << std::endl;	

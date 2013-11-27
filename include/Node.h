@@ -19,6 +19,13 @@ class Node {
         std::string display();
         int evaluate(int x, int y);
 
+        void condenseNodes(Node* node);
+        Node* addNode(Node* node);
+        Node* subtractNode(Node* node);
+        Node* createNodeAndAdd(Node* node);
+
+        bool hasLikeTerms(Node* node);
+
         void toString();                
 
     private:

@@ -8,6 +8,11 @@ XyPolynomial::XyPolynomial(){
 	n = 0;
 }
 
+XyPolynomial::XyPolynomial(int x, int y){
+	n = x;
+	m = y;
+}
+
 void XyPolynomial::input(){	
 	std::string* tripletArray = new std::string[50]; 	
 	int isUserDoneWithInput = 0;
@@ -39,10 +44,55 @@ void XyPolynomial::initialize(Node* nodes[], int nodeCount){
 
 void XyPolynomial::output(){
 	matrix->printFormatedMatrix();
+	// matrix->printMatrix();
 }
 
 void XyPolynomial::evaluate(int x, int y){
 	matrix->evaluateMatrix(x, y);
+}
+
+XyPolynomial* XyPolynomial::add(XyPolynomial* poly){
+	int maxRows;
+	int maxColumns;
+	if(poly->m > this->m){
+		maxColumns = poly->m;
+	} else {
+		maxColumns = this->m;
+	}
+
+	if(poly->n > this->n){
+		maxRows = poly->n;
+	} else {
+		maxRows = this->n;
+	}
+	XyPolynomial* result = new XyPolynomial(maxRows,maxColumns);
+	result->matrix = new SparseMatrix(maxRows,maxColumns);
+	result->matrix->addMatrix(poly->matrix);
+	result->matrix->addMatrix(this->matrix);
+	return result;
+}
+
+XyPolynomial* XyPolynomial::subtract(XyPolynomial* poly){
+	int maxRows;
+	int maxColumns;
+	if(poly->m > this->m){
+		maxColumns = poly->m;
+	} else {
+		maxColumns = this->m;
+	}
+	
+	if(poly->n > this->n){
+		maxRows = poly->n;
+	} else {
+		maxRows = this->n;
+	}
+	XyPolynomial* result = new XyPolynomial(maxRows,maxColumns);
+	result->matrix = new SparseMatrix(maxRows,maxColumns);
+	//first add original matrix to new polynomial
+	result->matrix->addMatrix(this->matrix);	
+	//then subtract input polynomial
+	result->matrix->subtractMatrix(poly->matrix);
+	return result;
 }
 
 Node** XyPolynomial::convertTripletsToNodes(std::string triplets[], int numTriplets){
@@ -146,7 +196,30 @@ void XyPolynomial::runTestCases(){
 	S->initialize(nodes, 4);
 	std::cout << "output for S:  ";
 	S->outputForTests();
+
+	XyPolynomial* A = P->add(Q);
+	std::cout << "output for A:  ";
+	A->outputForTests();
+
+	XyPolynomial* B = P->subtract(Q);
+	std::cout << "output for B:  ";
+	B->outputForTests();
 	
+	XyPolynomial* C = R->add(S);
+	std::cout << "output for C:  ";
+	C->outputForTests();
+
+	XyPolynomial* D = P->subtract(S);
+	std::cout << "output for D:  ";
+	D->outputForTests();
+
+	XyPolynomial* E = S->subtract(P);
+	std::cout << "output for E:  ";
+	E->outputForTests();
+	
+	XyPolynomial* F = Q->add(R);	
+	std::cout << "output for F:  ";
+	F->outputForTests();
 }
 
 void XyPolynomial::outputForTests(){	
