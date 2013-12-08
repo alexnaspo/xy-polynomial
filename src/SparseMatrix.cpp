@@ -21,11 +21,13 @@ SparseMatrix::SparseMatrix(int totalRows, int totalColumns){
 }
 
 void SparseMatrix::insertInMatrix(Node* node){	
-	Node* newNode = new Node(node->getCoefficient(), node->getRow(), node->getColumn());
-	int rowIndex = newNode->getRow();
-	int columnIndex = newNode->getColumn();
-	this->rowArray[rowIndex]->insertInRow(newNode);	
-	this->columnArray[columnIndex]->insertInColumn(newNode);
+	if(node->getCoefficient() != 0){
+		Node* newNode = new Node(node->getCoefficient(), node->getRow(), node->getColumn());
+		int rowIndex = newNode->getRow();
+		int columnIndex = newNode->getColumn();
+		this->rowArray[rowIndex]->insertInRow(newNode);	
+		this->columnArray[columnIndex]->insertInColumn(newNode);
+	}
 }
 
 void SparseMatrix::addMatrix(SparseMatrix* matrix){
@@ -70,7 +72,10 @@ SparseMatrix* SparseMatrix::multiplyNode(Node* node){
 		while(cp->getRowLink()->getColumn() != -1){
 			cp = cp->getRowLink();
 			Node* newNode = cp->multiplyNode(node);
-			resultMatrix->addToMatrix(newNode);
+			if(newNode != NULL){
+				resultMatrix->addToMatrix(newNode);		
+			}
+			
 		}
 	}
 	return resultMatrix;

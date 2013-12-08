@@ -109,7 +109,12 @@ Node* Node::multiplyNode(Node* node){
 	int coef = getCoefficient() * node->getCoefficient();
 	int rowValue = getRow() + node->getRow();
 	int columnValue = getColumn() + node->getColumn();
-	return new Node(coef, rowValue, columnValue);
+	if(coef != 0){
+		return new Node(coef, rowValue, columnValue);
+	} else {
+		return NULL;
+	}
+	
 }
 
 bool Node::hasLikeTerms(Node* node){
