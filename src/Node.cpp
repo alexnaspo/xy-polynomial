@@ -105,6 +105,13 @@ Node* Node::subtractNode(Node* node){
 	return new Node(coef, node->getRow(), node->getColumn());
 }
 
+Node* Node::multiplyNode(Node* node){
+	int coef = getCoefficient() * node->getCoefficient();
+	int rowValue = getRow() + node->getRow();
+	int columnValue = getColumn() + node->getColumn();
+	return new Node(coef, rowValue, columnValue);
+}
+
 bool Node::hasLikeTerms(Node* node){
 	if(node->getRow() == this->getRow() && node->getColumn() == this->getColumn()){
 		return true;

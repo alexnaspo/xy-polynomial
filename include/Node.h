@@ -24,6 +24,8 @@ class Node {
         Node* subtractNode(Node* node);
         Node* createNodeAndAdd(Node* node);
 
+        Node* multiplyNode(Node* node);
+
         bool hasLikeTerms(Node* node);
 
         void toString();                        

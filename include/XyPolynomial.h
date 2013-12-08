@@ -26,6 +26,7 @@ class XyPolynomial{
 		static void runTestCases();
 		XyPolynomial* add(XyPolynomial* poly);
 		XyPolynomial* subtract(XyPolynomial* poly);
+		XyPolynomial* multiply(XyPolynomial* poly);
 
 		SparseMatrix* matrix;
 

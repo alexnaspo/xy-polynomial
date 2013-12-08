@@ -50,6 +50,32 @@ void SparseMatrix::subtractMatrix(SparseMatrix* matrix){
 	}
 }
 
+SparseMatrix* SparseMatrix::multiplyMatrix(SparseMatrix* matrix){
+	SparseMatrix* resultMatrix = new SparseMatrix(rowCount, columnCount);
+	for(int i = matrix->rowCount; i >= 0; i--){	
+		Node* cp = matrix->rowArray[i]->getHeadPtr();
+		while(cp->getRowLink()->getColumn() != -1){
+			cp = cp->getRowLink();
+			SparseMatrix* multMatrix = this->multiplyNode(cp);
+			resultMatrix->addMatrix(multMatrix);
+		}
+	}
+	return resultMatrix;
+}
+
+SparseMatrix* SparseMatrix::multiplyNode(Node* node){
+	SparseMatrix* resultMatrix = new SparseMatrix(rowCount, columnCount);
+	for(int i = this->rowCount; i >= 0; i--){	
+		Node* cp = this->rowArray[i]->getHeadPtr();
+		while(cp->getRowLink()->getColumn() != -1){
+			cp = cp->getRowLink();
+			Node* newNode = cp->multiplyNode(node);
+			resultMatrix->addToMatrix(newNode);
+		}
+	}
+	return resultMatrix;
+}
+
 void SparseMatrix::addToMatrix(Node* node){	
 	Node* nodeFound = this->findNodeWithLikeTerms(node);
 	if(nodeFound){

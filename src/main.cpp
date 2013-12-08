@@ -35,5 +35,7 @@ int main()
 	s->output();
 	std::cout << "output for User input:  ";
 	s->outputForTests();
+
+
 	return 0;
 }

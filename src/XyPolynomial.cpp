@@ -94,6 +94,18 @@ XyPolynomial* XyPolynomial::subtract(XyPolynomial* poly){
 	return result;
 }
 
+XyPolynomial* XyPolynomial::multiply(XyPolynomial* poly){
+	int maxRows, maxColumns;
+
+	maxColumns = this->m + poly->m;
+	maxRows = this->n + poly->n;
+	XyPolynomial* result = new XyPolynomial(maxRows, maxColumns);
+	result->matrix = new SparseMatrix(maxRows,maxColumns);
+	result->matrix->addMatrix(this->matrix);
+	result->matrix  = result->matrix->multiplyMatrix(poly->matrix);
+	return result;	
+}
+
 Node** XyPolynomial::convertTripletsToNodes(std::string triplets[], int numTriplets){
 	Node** nodes = new Node*[numTriplets];
 	for(int i = 0; i < numTriplets; i++){
@@ -219,6 +231,9 @@ void XyPolynomial::runTestCases(){
 	XyPolynomial* F = Q->add(R);	
 	std::cout << "output for F:  ";
 	F->output();
+
+	XyPolynomial* PQ = P->multiply(Q);
+	PQ->output();
 }
 
 void XyPolynomial::outputForTests(){	

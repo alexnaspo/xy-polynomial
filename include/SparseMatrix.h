@@ -18,6 +18,8 @@ class SparseMatrix{
 		void addMatrix(SparseMatrix* matrix);
 		void subtractMatrix(SparseMatrix* matrix);
 		void subtractFromMatrix(Node* node);
+		SparseMatrix* multiplyMatrix(SparseMatrix* matrix);
+		SparseMatrix* multiplyNode(Node* node);
 
 		CircularLinkedList** rowArray;
 		CircularLinkedList** columnArray; 	
