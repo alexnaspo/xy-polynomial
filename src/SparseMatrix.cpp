@@ -122,12 +122,11 @@ void SparseMatrix::printMatrix(void){
 void SparseMatrix::printFormatedMatrix(void){
 	std::string result;
     std::stringstream sstm;
-
 	for(int i = rowCount; i >= 0; i--){	
 		sstm << rowArray[i]->printList();	
 	}
-
 	std::cout << sstm.str() << std::endl;
+	std::cout << "" << std::endl;
 }
 
 void SparseMatrix::evaluateMatrix(double x, double y){

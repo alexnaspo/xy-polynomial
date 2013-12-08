@@ -106,6 +106,28 @@ XyPolynomial* XyPolynomial::multiply(XyPolynomial* poly){
 	return result;	
 }
 
+XyPolynomial* XyPolynomial::power(int power){
+	XyPolynomial* result = new XyPolynomial(pow(n,power), pow(m,power));
+	std::string* tripletArray = new std::string[50]; 
+	tripletArray[0] = "(1,0,0)";
+	Node** nodes = result->convertTripletsToNodes(tripletArray, 4);
+	result->initialize(nodes, 1);
+	XyPolynomial* base = new XyPolynomial(n, m);
+	base->matrix = new SparseMatrix(n,m);
+	base->matrix->addMatrix(this->matrix);
+	
+	int bit;
+	while(power){
+		bit = power & 1;
+		power = (power >> 1);
+		if(bit){
+			result = base->multiply(result);
+		}
+		base = base->multiply(base);
+	}
+	return result;
+}
+
 Node** XyPolynomial::convertTripletsToNodes(std::string triplets[], int numTriplets){
 	Node** nodes = new Node*[numTriplets];
 	for(int i = 0; i < numTriplets; i++){
@@ -232,8 +254,54 @@ void XyPolynomial::runTestCases(){
 	std::cout << "output for F:  ";
 	F->output();
 
-	XyPolynomial* PQ = P->multiply(Q);
-	PQ->output();
+	XyPolynomial* G = P->multiply(Q);
+	std::cout << "output for G:  ";
+	G->output();
+
+	XyPolynomial* H = R->multiply(S);
+	std::cout << "output for H:  ";
+	H->output();
+
+	XyPolynomial* I = A->multiply(B);
+	std::cout << "output for I:  ";
+	I->output();
+
+	XyPolynomial* J = E->multiply(F);
+	std::cout << "output for J:  ";
+	J->output();
+
+	XyPolynomial* K = D->multiply(E);
+	std::cout << "output for K:  ";
+	K->output();
+
+	XyPolynomial* L = I->multiply(K);
+	std::cout << "output for L:  ";
+	L->output();
+
+	XyPolynomial* P5 = P->power(5);
+	std::cout << "output for A=P^5:  ";
+	P5->output();
+
+	XyPolynomial* Q3 = Q->power(3);
+	std::cout << "output for B=Q^3:  ";
+	Q3->output();
+
+	XyPolynomial* R7 = R->power(7);
+	std::cout << "output for C=R^7:  ";
+	R7->output();
+
+	XyPolynomial* S2 = S->power(2);
+	std::cout << "output for D=S^2:  ";
+	S2->output();
+
+	XyPolynomial* P2 = P->power(2);
+	std::cout << "output for E=P^2:  ";
+	P2->output();
+
+	XyPolynomial* Q5 = Q->power(5);
+	std::cout << "output for F=Q^5:  ";
+	Q5->output();
+
 }
 
 void XyPolynomial::outputForTests(){	

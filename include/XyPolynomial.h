@@ -27,6 +27,7 @@ class XyPolynomial{
 		XyPolynomial* add(XyPolynomial* poly);
 		XyPolynomial* subtract(XyPolynomial* poly);
 		XyPolynomial* multiply(XyPolynomial* poly);
+		XyPolynomial* power(int power);
 
 		SparseMatrix* matrix;
 
